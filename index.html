@@ -6,214 +6,710 @@
   <meta name="description" content="Leptogramm - E-Book edukatif anak yang seru, lucu & bikin penasaran. Belajar sains & nilai kehidupan lewat cerita visual claymation.">
   <title>Leptogramm — E-Book Edukatif Anak</title>
   <style>
+    /* ═══════════════════════════════════════
+       ROOT & RESET
+    ═══════════════════════════════════════ */
     :root {
-      --primary: #4361ee;
-      --primary-hover: #3a56d4;
-      --accent: #ffb703;
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --shadow: 0 6px 16px rgba(0,0,0,0.08);
-      --radius: 16px;
+      --primary: #00A896;
+      --primary-dark: #008f7f;
+      --primary-light: #e0f7f4;
+      --accent: #FFD93D;
+      --accent-hover: #f0c800;
+      --bg: #f0faf8;
+      --bg-alt: #ffffff;
+      --text: #1a1a2e;
+      --text-muted: #555b6e;
+      --shadow-sm: 0 2px 8px rgba(0,168,150,0.08);
+      --shadow-md: 0 8px 30px rgba(0,168,150,0.12);
+      --shadow-lg: 0 20px 60px rgba(0,168,150,0.18);
+      --radius: 20px;
+      --radius-sm: 12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
     body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
       color: var(--text);
       background: var(--bg);
+      overflow-x: hidden;
     }
 
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-    a { text-decoration: none; color: inherit; transition: 0.2s; }
-    img, svg { max-width: 100%; }
+    a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+    img, svg { max-width: 100%; display: block; }
 
-    /* Header */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ═══════════════════════════════════════
+       HEADER / NAVBAR
+    ═══════════════════════════════════════ */
     header {
-      background: var(--card);
-      padding: 18px 0;
-      position: sticky; top: 0; z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,168,150,0.08);
+      transition: box-shadow 0.3s;
     }
-    nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-    .logo { font-weight: 800; font-size: 1.5rem; color: var(--primary); letter-spacing: -0.5px; }
 
-    /* Buttons */
+    header.scrolled {
+      box-shadow: var(--shadow-sm);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--primary); color: white;
-      padding: 12px 24px; border-radius: 10px;
-      font-weight: 600; font-size: 1rem;
-      box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .btn:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,168,150,0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0,168,150,0.4);
+    }
+
     .btn-outline {
-      background: transparent; border: 2px solid var(--primary);
-      color: var(--primary); box-shadow: none;
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
     }
-    .btn-outline:hover { background: var(--primary); color: white; }
 
-    /* Sections */
-    section { padding: 60px 0; }
-    .text-center { text-align: center; }
-    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 12px; line-height: 1.2; }
-    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 20px; }
-    .subtitle { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; max-width: 650px; margin-left: auto; margin-right: auto; }
-
-    /* Grid & Cards */
-    .grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .card {
-      background: var(--card); padding: 24px;
-      border-radius: var(--radius); box-shadow: var(--shadow);
-      display: flex; flex-direction: column; height: 100%;
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
     }
-    .card h3 { font-size: 1.25rem; margin: 8px 0 6px; }
-    .card p { color: var(--text-muted); font-size: 0.95rem; flex-grow: 1; }
-    .price { font-size: 1.2rem; font-weight: 700; margin: 14px 0 16px; display: flex; align-items: baseline; gap: 8px; }
-    .old-price { text-decoration: line-through; color: #94a3b8; font-weight: 400; font-size: 1rem; }
+
+    .btn-accent {
+      background: var(--accent);
+      color: var(--text);
+      box-shadow: 0 4px 15px rgba(255,217,61,0.3);
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255,217,61,0.4);
+    }
+
+    /* ═══════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════ */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(0,168,150,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
     .badge {
-      display: inline-block; background: #dbeafe; color: #1e40af;
-      padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--text);
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(255,217,61,0.25);
+      animation: fadeInDown 0.6s ease;
     }
-    .coming-soon { opacity: 0.85; background: #f1f5f9; }
-    .coming-soon .btn { background: #cbd5e1; cursor: not-allowed; pointer-events: none; box-shadow: none; }
 
-    /* Features */
-    .features { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
-    .feature { flex: 1; min-width: 220px; text-align: center; padding: 20px; background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .feature .icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
-    .feature h4 { margin-bottom: 6px; font-size: 1.1rem; }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--text);
+      animation: fadeInUp 0.6s ease 0.1s both;
+    }
 
-    /* CTA */
+    .hero h1 .highlight {
+      color: var(--primary);
+      position: relative;
+    }
+
+    .hero h1 .highlight-yellow {
+      color: var(--accent);
+      text-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      animation: fadeInUp 0.6s ease 0.2s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.6s ease 0.3s both;
+    }
+
+    /* ═══════════════════════════════════════
+       PRODUCT SECTION
+    ══════════════════════════════════════ */
+    .products {
+      padding: 60px 0 70px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,168,150,0.06);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .product-card .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+
+    .product-card h3 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .product-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex-grow: 1;
+      margin-bottom: 20px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .price-old {
+      font-size: 1rem;
+      color: #aab;
+      text-decoration: line-through;
+    }
+
+    .price-new {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+    }
+
+    .product-card .btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+    }
+
+    /* Coming Soon Card */
+    .card-coming {
+      opacity: 0.75;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+
+    .card-coming .btn {
+      background: #dee2e6;
+      color: #868e96;
+      cursor: not-allowed;
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    /* ═══════════════════════════════════════
+       FEATURES / WHY US
+    ═══════════════════════════════════════ */
+    .features {
+      padding: 60px 0 70px;
+      background: var(--bg-alt);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 36px 24px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .feature-card:hover {
+      background: var(--bg-alt);
+      border-color: rgba(0,168,150,0.1);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* ═══════════════════════════════════════
+       CTA SECTION
+    ═══════════════════════════════════════ */
+    .cta {
+      padding: 60px 0;
+    }
+
     .cta-box {
-      background: linear-gradient(135deg, var(--primary), #6366f1);
-      color: white; padding: 40px 20px; border-radius: var(--radius);
-      text-align: center; margin: 40px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, #00b8a9 50%, var(--primary-dark) 100%);
+      border-radius: var(--radius);
+      padding: 56px 32px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,168,150,0.3);
     }
-    .cta-box h2, .cta-box p { color: white; }
-    .cta-box .btn { background: white; color: var(--primary); margin-top: 20px; }
-    .cta-box .btn:hover { background: #f8fafc; }
 
-    /* Footer */
-    footer { background: #0f172a; color: #cbd5e1; padding: 30px 0; margin-top: 20px; }
-    footer .socials { margin-top: 12px; display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-    footer .socials a { color: var(--accent); font-weight: 500; }
-    footer .socials a:hover { color: white; }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
 
-    /* Responsive */
-    @media (max-width: 640px) {
-      nav { flex-direction: column; text-align: center; }
-      section { padding: 40px 0; }
-      .cta-box { padding: 30px 16px; }
+    .cta-box::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-box .btn-accent {
+      position: relative;
+      z-index: 1;
+      font-size: 1.05rem;
+      padding: 16px 36px;
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 40px 0 30px;
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 16px;
+      font-size: 0.92rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 8px;
+    }
+
+    .socials a {
+      padding: 6px 12px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.05);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .socials a:hover {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    /* ═══════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════ */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll-triggered fade-in via JS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero { padding: 50px 0 40px; }
+      .products, .features, .cta { padding: 40px 0; }
+      .cta-box { padding: 40px 20px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      nav { flex-direction: column; gap: 12px; }
+      .logo { font-size: 1.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: center; }
+      .hero-actions .btn { width: 100%; max-width: 280px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <!-- ═══ HEADER ═══ -->
+  <header id="header">
     <div class="container">
       <nav>
-        <div class="logo">📘 Leptogramm</div>
-        <a href="#produk" class="btn btn-outline">Lihat E-Book →</a>
+        <a href="#" class="logo">
+          <!-- Logo SVG -->
+          <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25 35C15 35,10 42,10 52C10 65,20 72,32 72C38 72,43 70,47 67L50 65L53 67C57 70,62 72,68 72C80 72,90 65,90 52C90 42,85 35,75 35C68 35,62 38,58 43L50 50L42 43C38 38,32 35,25 35Z" fill="#00A896"/>
+            <circle cx="32" cy="50" r="8" fill="white"/>
+            <circle cx="32" cy="50" r="4" fill="#00A896"/>
+            <circle cx="68" cy="50" r="8" fill="white"/>
+            <circle cx="68" cy="50" r="4" fill="#00A896"/>
+            <path d="M47 68L50 75L53 68" fill="#00A896"/>
+            <path d="M18 32L15 20L28 25Z" fill="#00A896"/>
+            <path d="M82 32L85 20L72 25Z" fill="#00A896"/>
+          </svg>
+          Leptogramm
+        </a>
+        <a href="#produk" class="btn btn-primary">Lihat E-Book →</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="text-center">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
       <div class="container">
-        <h1>📚 Toko E-Book Leptogramm</h1>
+        <span class="badge"> Toko E-Book Leptogramm</span>
+        <h1>
+          E-Book Edukatif Anak<br>
+          yang <span class="highlight">Seru, Lucu & Bikin</span><br>
+          <span class="highlight-yellow">Penasaran!</span>
+        </h1>
         <p class="subtitle">
-          E-Book Edukatif Anak yang Seru, Lucu & Bikin Penasaran!<br>
-          Belajar sains dan nilai kehidupan lewat cerita visual yang menggemaskan. Cocok untuk anak usia TK–SD.
+          Belajar sains dan nilai kehidupan lewat cerita visual yang menggemaskan.
+          Cocok untuk anak usia TK–SD.
         </p>
+        <div class="hero-actions">
+          <a href="#produk" class="btn btn-primary">📥 Jelajahi E-Book</a>
+          <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" target="_blank" rel="noopener noreferrer" class="btn btn-accent">Beli Sekarang 💰</a>
+        </div>
       </div>
     </section>
 
-    <!-- Produk -->
-    <section id="produk">
+    <!-- ═══ PRODUK ═══ -->
+    <section class="products" id="produk">
       <div class="container">
-        <div class="text-center" style="margin-bottom: 32px;">
+        <div class="section-header reveal">
           <h2>📖 Koleksi E-Book</h2>
-          <p class="subtitle" style="margin-bottom: 0;">Pilih E-Book untuk Si Kecil</p>
+          <p>Pilih E-Book untuk Si Kecil</p>
         </div>
-        <div class="grid">
+        <div class="product-grid">
+
           <!-- Produk 1 -->
-          <article class="card">
-            <span class="badge">🔬 Sains Receh</span>
+          <article class="product-card reveal">
+            <span class="tag">🔬 Sains Receh</span>
             <h3>Fakta Receh Upil</h3>
             <p>Misteri upil yang selama ini bikin penasaran! Belajar sains tubuh bersama Hanif & Syafiq dengan cara yang lucu dan menggemaskan.</p>
-            <div class="price">
-              <span class="old-price">Rp 19.000</span> Rp 12.500
+            <div class="price-row">
+              <span class="price-old">Rp 19.000</span>
+              <span class="price-new">Rp 12.500</span>
             </div>
-            <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" target="_blank" rel="noopener noreferrer" class="btn">📥 Beli Sekarang</a>
+            <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" target="_blank" rel="noopener noreferrer" class="btn btn-primary">📥 Beli Sekarang</a>
           </article>
 
-          <!-- Produk 2 -->
-          <article class="card coming-soon">
-            <span class="badge">🔍 E-Book Baru Segera Hadir!</span>
-            <h3>🕐 Segera Hadir</h3>
-            <h3>Judul Segera Diumumkan</h3>
-            <p>E-Book seru berikutnya dari Trio Penasaran sedang dalam persiapan. Pantau terus!</p>
-            <div class="price">Coming Soon 🔔</div>
+          <!-- Produk 2 (Coming Soon) -->
+          <article class="product-card card-coming reveal">
+            <span class="tag">🔍 Segera Hadir</span>
+            <h3>🕐 Judul Segera Diumumkan</h3>
+            <p>E-Book seru berikutnya dari Trio Penasaran sedang dalam persiapan. Pantau terus agar tidak ketinggalan!</p>
+            <div class="price-row">
+              <span class="price-new" style="color:#868e96;">Coming Soon 🔔</span>
+            </div>
             <button class="btn" disabled>Segera Hadir</button>
           </article>
+
         </div>
       </div>
     </section>
 
-    <!-- Kenapa Pilih -->
-    <section id="kenapa">
-      <div class="container text-center">
-        <h2>💡 Kenapa Pilih Leptogramm?</h2>
-        <p class="subtitle">Belajar Sains Jadi Seru!</p>
-        <div class="features">
-          <div class="feature">
-            <span class="icon">😂</span>
+    <!-- ═══ FEATURES ═══ -->
+    <section class="features" id="kenapa">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>💡 Kenapa Pilih Leptogramm?</h2>
+          <p>Belajar Sains Jadi Seru!</p>
+        </div>
+        <div class="features-grid">
+
+          <div class="feature-card reveal">
+            <span class="feature-icon">😂</span>
             <h4>Lucu & Menghibur</h4>
             <p>Topik receh yang bikin anak ngakak sekaligus belajar fakta ilmiah yang beneran!</p>
           </div>
-          <div class="feature">
-            <span class="icon">🎨</span>
+
+          <div class="feature-card reveal">
+            <span class="feature-icon">🎨</span>
             <h4>Visual Claymation</h4>
             <p>Gaya gambar clay 3D khas Trio Penasaran yang unik dan disukai anak-anak.</p>
           </div>
-          <div class="feature">
-            <span class="icon">📱</span>
+
+          <div class="feature-card reveal">
+            <span class="feature-icon"></span>
             <h4>PDF Digital Praktis</h4>
             <p>Langsung terima di HP, bisa dibuka kapan saja dan di mana saja tanpa koneksi.</p>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- CTA Akhir -->
-    <section>
+    <!-- ═══ CTA ══ -->
+    <section class="cta">
       <div class="container">
-        <div class="cta-box">
+        <div class="cta-box reveal">
           <h2>Yuk, Buat Anak Makin Penasaran! 🤔</h2>
-          <p style="margin-bottom: 0;">Dapatkan E-Book Mini Fakta Receh Upil sekarang dengan harga spesial</p>
-          <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" target="_blank" rel="noopener noreferrer" class="btn">📥 Beli Sekarang — Rp 12.500</a>
+          <p>Dapatkan E-Book Mini Fakta Receh Upil sekarang dengan harga spesial</p>
+          <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" target="_blank" rel="noopener noreferrer" class="btn btn-accent">📥 Beli Sekarang — Rp 12.500</a>
         </div>
       </div>
     </section>
+
   </main>
 
+  <!-- ═══ FOOTER ═══ -->
   <footer>
-    <div class="container text-center">
+    <div class="container">
       <p>© 2025 <a href="https://lynk.id/leptogramm" target="_blank" rel="noopener noreferrer">Leptogramm</a> · E-Book & Konten Edukatif Anak</p>
       <div class="socials">
-        <span>Ikuti kami di</span>
-        <a href="https://www.tiktok.com/@triopenasaran" target="_blank" rel="noopener noreferrer">TikTok</a> ·
-        <a href="https://www.instagram.com/leptogramm" target="_blank" rel="noopener noreferrer">Instagram</a> ·
-        <a href="https://www.youtube.com/@TrioPenasaran" target="_blank" rel="noopener noreferrer">YouTube</a> ·
+        <span style="opacity:0.6;">Ikuti kami di</span>
+        <a href="https://www.tiktok.com/@triopenasaran" target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a href="https://www.instagram.com/leptogramm" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@TrioPenasaran" target="_blank" rel="noopener noreferrer">YouTube</a>
         <a href="https://www.threads.com/@leptogramm" target="_blank" rel="noopener noreferrer">Threads</a>
       </div>
     </div>
   </footer>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    // Header shadow on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
