@@ -1,395 +1,440 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leptogramm — E-Book Edukatif Anak</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #FF9F1C;
-            --secondary: #2EC4B6;
-            --accent: #E71D36;
-            --text: #2B2D42;
-            --bg: #FDFFFC;
-            --card-bg: #FFFFFF;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leptogramm — E-Book Edukatif Anak</title>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L4LFP9P7GM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  gtag('config', 'G-L4LFP9P7GM');
+</script>
+  
+  <style>
+    /* ══════════════════════════════════════
+       ROOT & RESET
+    ═══════════════════════════════════════ */
+    :root {
+      --primary: #00A896;
+      --primary-dark: #008f7f;
+      --primary-light: #e0f7f4;
+      --accent: #FFD93D;
+      --text: #1a1a2e;
+      --text-muted: #555b6e;
+      --bg: #f0faf8;
+      --bg-alt: #ffffff;
+      --radius: 20px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
 
-        body {
-            font-family: 'Nunito', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    img { max-width: 100%; display: block; border-radius: 12px; }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
 
-        /* Navbar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
+    /* ═══════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 28px; border-radius: 50px; font-weight: 700;
+      cursor: pointer; border: none; transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--primary); color: white;
+      box-shadow: 0 4px 15px rgba(0,168,150,0.3);
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .btn-accent {
+      background: var(--accent); color: var(--text);
+      box-shadow: 0 4px 15px rgba(255,217,61,0.3);
+    }
+    .btn-accent:hover { background: #f0c800; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
 
-        .logo {
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: var(--secondary);
-        }
+    /* ═══════════════════════════════════════
+       HEADER
+    ═══════════════════════════════════════ */
+    header {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 15px 0;
+    }
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.35rem; font-weight: 800; color: var(--primary);
+    }
+    .logo-img { height: 40px; width: auto; }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 700;
-            margin-left: 20px;
-        }
+    /* ══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      padding: 80px 0 60px;
+      display: flex; align-items: center; gap: 50px;
+    }
+    .hero-content { flex: 1; }
+    .hero-image { flex: 1; }
+    
+    .badge {
+      display: inline-block; background: var(--accent);
+      color: var(--text); padding: 8px 20px;
+      border-radius: 50px; font-size: 0.85rem; font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900; line-height: 1.2; margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero .subtitle {
+      font-size: 1.1rem; color: var(--text-muted);
+      margin-bottom: 30px; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 15px; flex-wrap: wrap; }
+    .hero-img {
+      border-radius: var(--radius);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
 
-        .btn {
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            transition: transform 0.2s;
-        }
+    /* ═══════════════════════════════════════
+       PRODUCTS
+    ═══════════════════════════════════════ */
+    .products { padding: 80px 0; background: white; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-header h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; }
+    .section-header p { color: var(--text-muted); font-size: 1.1rem; }
 
-        .btn:hover {
-            transform: scale(1.05);
-            background-color: #e08b17;
-        }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 Kolom Berdampingan */
+      gap: 30px;
+    }
 
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(135deg, #fff 0%, #f0f4f8 100%);
-            border-radius: 20px;
-            margin-bottom: 40px;
-        }
+    .product-card {
+      background: var(--bg); border-radius: var(--radius);
+      padding: 35px; box-shadow: var(--shadow);
+      border: 1px solid rgba(0,168,150,0.1);
+      transition: all 0.3s; display: flex; flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    
+    /* Container untuk gambar ganda di dalam card */
+    .card-gallery {
+      display: flex;
+      gap: 15px;
+      margin: 15px 0 25px;
+      align-items: flex-end;
+    }
+    .card-gallery img {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .card-gallery img:hover { transform: scale(1.05); }
+    
+    /* Ukuran gambar cover dan mockup */
+    .img-cover { width: 45%; }
+    .img-mockup { width: 55%; transform: rotate(-3deg); }
+    .img-mockup:hover { transform: rotate(0deg) scale(1.02); }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
+    .tag {
+      display: inline-block; background: var(--primary-light);
+      color: var(--primary); padding: 6px 16px;
+      border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .product-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
+    .product-card p {
+      color: var(--text-muted); font-size: 0.95rem;
+      line-height: 1.6; flex-grow: 1; margin-bottom: 20px;
+    }
+    
+    .price-row {
+      display: flex; align-items: baseline; gap: 12px;
+      margin-bottom: 20px;
+    }
+    .price-old {
+      font-size: 1rem; color: #94a3b8; text-decoration: line-through;
+    }
+    .price-new {
+      font-size: 1.6rem; font-weight: 900; color: var(--primary);
+    }
+    .product-card .btn { width: 100%; padding: 14px; font-size: 1rem; }
 
-        .hero p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    /* COMING SOON CARD */
+    .card-coming {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      opacity: 0.85; border: 2px dashed #cbd5e1;
+    }
+    .card-coming .tag { background: #e2e8f0; color: #64748b; }
+    .card-coming .btn {
+      background: #cbd5e1; color: #64748b;
+      cursor: not-allowed; pointer-events: none;
+    }
+    .coming-placeholder {
+      text-align: center; padding: 40px 20px;
+      background: rgba(255,255,255,0.6); border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .coming-placeholder svg {
+      width: 60px; height: 60px; margin: 0 auto 10px;
+      opacity: 0.5;
+    }
 
-        .hero-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+    /* ══════════════════════════════════════
+       FEATURES
+    ═══════════════════════════════════════ */
+    .features { padding: 80px 0; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .feature-card {
+      background: white; padding: 35px 25px;
+      border-radius: var(--radius); text-align: center;
+      box-shadow: var(--shadow); transition: all 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-5px); }
+    .feature-icon { font-size: 3rem; margin-bottom: 15px; }
+    .feature-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
+    .feature-card p { color: var(--text-muted); }
 
-        /* Products */
-        .products {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+    /* ══════════════════════════════════════
+       CTA & FOOTER
+    ═══════════════════════════════════════ */
+    .cta { padding: 60px 0; }
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: var(--radius); padding: 60px 30px;
+      text-align: center; color: white;
+      box-shadow: 0 20px 60px rgba(0,168,150,0.3);
+    }
+    .cta-box h2 { font-size: 2rem; margin-bottom: 15px; }
+    .cta-box p { font-size: 1.1rem; opacity: 0.95; margin-bottom: 30px; }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
+    footer {
+      background: #0f172a; color: #94a3b8;
+      padding: 40px 0; text-align: center;
+    }
+    footer a { color: var(--accent); }
+    footer a:hover { color: white; }
+    .socials {
+      display: flex; justify-content: center; gap: 15px;
+      margin-top: 15px; flex-wrap: wrap;
+    }
+    .socials a {
+      padding: 6px 14px; background: rgba(255,255,255,0.05);
+      border-radius: 50px; font-size: 0.9rem;
+    }
+    .socials a:hover { background: rgba(255,255,255,0.15); }
 
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card-images {
-            position: relative;
-            height: 350px;
-            background-color: #f0f4f8;
-            overflow: hidden;
-        }
-        
-        .card-images img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            transition: opacity 0.3s;
-        }
-
-        .card-images .img-cover {
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .card-images .img-mockup {
-            bottom: 0;
-            right: 0;
-            width: 60%;
-            height: 60%;
-            z-index: 2;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--accent);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            z-index: 3;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: left;
-        }
-
-        .tag {
-            font-size: 0.8rem;
-            color: var(--secondary);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .card-content h3 {
-            margin: 5px 0;
-            font-size: 1.3rem;
-        }
-
-        .description {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 15px;
-            height: 60px;
-            overflow: hidden;
-        }
-
-        .price {
-            margin-bottom: 15px;
-        }
-
-        .original {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        .current {
-            color: var(--accent);
-            font-weight: 900;
-            font-size: 1.2rem;
-            margin-left: 10px;
-        }
-
-        .btn-card {
-            width: 100%;
-            text-align: center;
-            background-color: var(--secondary);
-        }
-        
-        .btn-card:hover {
-            background-color: #25a094;
-        }
-
-        /* Features */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
-            text-align: center;
-        }
-
-        .feature-item {
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid #eee;
-            color: #666;
-        }
-
-        .social-links a {
-            margin: 0 10px;
-            color: var(--text);
-            text-decoration: none;
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 1.8rem; }
-            .card-images { height: 300px; }
-        }
-    </style>
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; text-align: center; padding: 50px 0; }
+      .hero-actions { justify-content: center; }
+      .product-grid { grid-template-columns: 1fr; } /* 1 Kolom di HP */
+      nav { flex-direction: column; gap: 12px; }
+      .card-gallery { justify-content: center; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- ═══ HEADER ══ -->
+  <header>
     <div class="container">
-        <nav>
-            <div class="logo">Leptogramm</div>
-            <div class="nav-links">
-                <a href="#produk">Lihat E-Book →</a>
-            </div>
-        </nav>
-
-        <header class="hero">
-            <h1>📚 Toko E-Book Leptogramm</h1>
-            <p>E-Book Edukatif Anak yang Seru, Lucu & Bikin Penasaran!<br>
-            Belajar sains dan nilai kehidupan lewat cerita visual yang menggemaskan. Cocok untuk anak usia TK–SD.</p>
-            <a href="#produk" class="btn">📥 Jelajahi E-Book</a>
-            <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" class="btn">Beli Sekarang 💰</a>
-            
-            <img src="hero.png" alt="Trio Penasaran E-Book Collection" class="hero-img">
-        </header>
-
-        <section id="produk" class="products">
-            <h2>📖 Koleksi E-Book</h2>
-            <p>Pilih E-Book untuk Si Kecil</p>
-            
-            <div class="product-grid">
-                
-                <!-- E-Book 1: Upil -->
-                <div class="product-card">
-                    <div class="card-images">
-                        <img src="cover.png" alt="Fakta Receh Upil Cover" class="img-cover">
-                        <img src="mockup.png" alt="Fakta Receh Upil Mockup" class="img-mockup">
-                        <span class="badge">Best Seller</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="tag">🔬 Sains Receh</span>
-                        <h3>Fakta Receh Upil</h3>
-                        <p class="description">
-                            Misteri upil yang selama ini bikin penasaran! Belajar sains tubuh bersama Hanif & Syafiq dengan cara yang lucu dan menggemaskan.
-                        </p>
-                        <div class="price">
-                            <span class="original">Rp 19.000</span>
-                            <span class="current">Rp 12.500</span>
-                        </div>
-                        <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" class="btn btn-card">📥 Beli Sekarang</a>
-                    </div>
-                </div>
-
-                <!-- E-Book 2: Merinding -->
-                <div class="product-card">
-                    <div class="card-images">
-                        <img src="cover2.png" alt="Fakta Receh Merinding Cover" class="img-cover">
-                        <img src="mockup2.png" alt="Fakta Receh Merinding Mockup" class="img-mockup">
-                        <span class="badge">🔥 Baru</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="tag">🔬 Sains Receh</span>
-                        <h3>Fakta Receh Merinding</h3>
-                        <p class="description">
-                            Kenapa sih kita bisa merinding? Yuk pelajari sains merinding bareng Hanif & Syafiq! Vol. 2 dari seri Trio Penasaran.
-                        </p>
-                        <div class="price">
-                            <span class="original">Rp 19.000</span>
-                            <span class="current">Rp 12.500</span>
-                        </div>
-                        <a href="http://lynk.id/leptogramm/81j70wyeo8z4/checkout" class="btn btn-card">📥 Beli Sekarang</a>
-                    </div>
-                </div>
-
-                <!-- E-Book Baru (Coming Soon) -->
-                <div class="product-card">
-                    <div class="card-images" style="background-color: #f0f4f8; display: flex; align-items: center; justify-content: center;">
-                        <span style="font-size: 4rem;">🕐</span>
-                    </div>
-                    <div class="card-content">
-                        <span class="tag">🔍 Segera Hadir</span>
-                        <h3>E-Book Baru</h3>
-                        <p class="description">
-                            E-Book seru berikutnya dari Trio Penasaran sedang dalam persiapan. Pantau terus agar tidak ketinggalan!
-                        </p>
-                        <div class="price">
-                            <span class="current">Coming Soon 🔔</span>
-                        </div>
-                        <a href="#" class="btn btn-card" style="background-color: #ccc; pointer-events: none;">Segera Hadir</a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="features">
-            <div class="feature-item">
-                <div class="feature-icon">😂</div>
-                <h3>Lucu & Menghibur</h3>
-                <p>Topik receh yang bikin anak ngakak sekaligus belajar fakta ilmiah yang beneran!</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">🎨</div>
-                <h3>Visual Claymation</h3>
-                <p>Gaya gambar clay 3D khas Trio Penasaran yang unik dan disukai anak-anak.</p>
-            </div>
-            <div class="feature-item">
-                <div class="feature-icon">📱</div>
-                <h3>PDF Digital Praktis</h3>
-                <p>Langsung terima di HP, bisa dibuka kapan saja dan di mana saja tanpa koneksi.</p>
-            </div>
-        </section>
-
-        <div class="hero" style="background: #f0f4f8;">
-            <h2>Yuk, Buat Anak Makin Penasaran! 🤔</h2>
-            <p>Dapatkan E-Book Mini Fakta Receh sekarang dengan harga spesial</p>
-            <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" class="btn">📥 Beli Sekarang — Rp 12.500</a>
-        </div>
-
-        <footer>
-            <p>© 2025 <a href="https://lynk.id/leptogramm" style="color:inherit;">Leptogramm</a> · E-Book & Konten Edukatif Anak</p>
-            <div class="social-links" style="margin-top: 20px;">
-                <p>Ikuti kami di:</p>
-                <a href="https://www.tiktok.com/@triopenasaran">TikTok</a>
-                <a href="https://www.instagram.com/leptogramm">Instagram</a>
-                <a href="https://www.youtube.com/@TrioPenasaran">YouTube</a>
-                <a href="https://www.threads.com/@leptogramm">Threads</a>
-            </div>
-        </footer>
+      <nav>
+        <a href="#" class="logo">
+          <!-- GAMBAR 1: LOGO -->
+          <img src="logo.png" alt="Leptogramm Logo" class="logo-img">
+          Leptogramm
+        </a>
+        <a href="#produk" class="btn btn-outline">Lihat E-Book →</a>
+      </nav>
     </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero container">
+    <div class="hero-content">
+      <span class="badge"> Toko E-Book Leptogramm</span>
+      <h1>
+        E-Book Edukatif Anak<br>
+        yang <span>Seru, Lucu & Bikin Penasaran!</span>
+      </h1>
+      <p class="subtitle">
+        Belajar sains dan nilai kehidupan lewat cerita visual yang menggemaskan.
+        Cocok untuk anak usia TK–SD.
+      </p>
+      <div class="hero-actions">
+        <a href="#produk" class="btn btn-primary">📥 Jelajahi E-Book</a>
+        <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" class="btn btn-accent">Beli Sekarang 💰</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- GAMBAR 2: HERO -->
+      <img src="hero.png" alt="Trio Penasaran" class="hero-img">
+    </div>
+  </section>
+
+  <!-- ═══ PRODUCTS ═══ -->
+  <section class="products" id="produk">
+    <div class="container">
+      <div class="section-header">
+        <h2>📖 Koleksi E-Book</h2>
+        <p>Pilih E-Book untuk Si Kecil</p>
+      </div>
+
+      <div class="product-grid">
+        
+        <!-- KARTU 1: FAKTA RECEH UPIL -->
+        <article class="product-card">
+          <span class="tag">🔬 Sains Receh</span>
+          <h3>Fakta Receh Upil</h3>
+          
+          <!-- BAGIAN INI BERISI DUA GAMBAR (COVER & MOCKUP) -->
+          <div class="card-gallery">
+            <img src="cover.png" alt="Cover Buku Fakta Receh Upil" class="img-cover">
+            <img src="mockup.png" alt="Mockup Buku Fakta Receh Upil" class="img-mockup">
+          </div>
+          
+          <p>Misteri upil yang selama ini bikin penasaran! Belajar sains tubuh bersama Hanif & Syafiq dengan cara yang lucu dan menggemaskan.</p>
+          
+          <div class="price-row">
+            <span class="price-old">Rp 19.000</span>
+            <span class="price-new">Rp 12.500</span>
+          </div>
+          
+          <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" class="btn btn-primary">📥 Beli Sekarang</a>
+        </article>
+		
+		<!-- KARTU 2: FAKTA RECEH MERINDING -->
+        <article class="product-card">
+          <span class="tag">🔬 Sains Receh</span>
+          <h3>Fakta Receh Merinding</h3>
+          
+          <!-- BAGIAN INI BERISI DUA GAMBAR (COVER & MOCKUP) -->
+          <div class="card-gallery">
+            <img src="cover2.png" alt="Cover Buku Fakta Receh Merinding" class="img-cover">
+            <img src="mockup2.png" alt="Mockup Buku Fakta Receh Merinding" class="img-mockup">
+          </div>
+          
+          <p>Penjelasan logis untuk anak kenapa kita merinding! Belajar sains tubuh bersama Hanif & Syafiq dengan cara yang lucu dan menggemaskan.</p>
+          
+          <div class="price-row">
+            <span class="price-old">Rp 19.000</span>
+            <span class="price-new">Rp 12.500</span>
+          </div>
+          
+          <a href="http://lynk.id/leptogramm/81j70wyeo8z4/checkout" class="btn btn-primary">📥 Beli Sekarang</a>
+        </article>
+
+        <!-- KARTU 3: COMING SOON -->
+        <article class="product-card card-coming">
+          <span class="tag">🔍 Segera Hadir</span>
+          <h3>🕐 E-Book Baru</h3>
+          
+          <div class="coming-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <p style="color: #64748b; font-weight: 600;">Coming Soon</p>
+          </div>
+          
+          <p>E-Book seru berikutnya dari Trio Penasaran sedang dalam persiapan. Pantau terus agar tidak ketinggalan!</p>
+          
+          <div class="price-row">
+            <span class="price-new" style="color: #64748b;">Coming Soon 🔔</span>
+          </div>
+          
+          <button class="btn" disabled>Segera Hadir</button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>💡 Kenapa Pilih Leptogramm?</h2>
+        <p>Belajar Sains Jadi Seru!</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">😂</div>
+          <h4>Lucu & Menghibur</h4>
+          <p>Topik receh yang bikin anak ngakak sekaligus belajar fakta ilmiah yang beneran!</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h4>Visual Claymation</h4>
+          <p>Gaya gambar clay 3D khas Trio Penasaran yang unik dan disukai anak-anak.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon"></div>
+          <h4>PDF Digital Praktis</h4>
+          <p>Langsung terima di HP, bisa dibuka kapan saja dan di mana saja tanpa koneksi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Yuk, Buat Anak Makin Penasaran! 🤔</h2>
+        <p>Dapatkan E-Book Mini Fakta Receh Upil sekarang dengan harga spesial</p>
+        <a href="http://lynk.id/leptogramm/v02njzl0pd6m/checkout" class="btn btn-accent"> Beli Sekarang — Rp 12.500</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container">
+      <p>© 2025 <a href="https://lynk.id/leptogramm">Leptogramm</a> · E-Book & Konten Edukatif Anak</p>
+      <div class="socials">
+        <span style="opacity:0.6;">Ikuti kami di</span>
+        <a href="https://www.tiktok.com/@triopenasaran">TikTok</a>
+        <a href="https://www.instagram.com/leptogramm">Instagram</a>
+        <a href="https://www.youtube.com/@TrioPenasaran">YouTube</a>
+        <a href="https://www.threads.com/@leptogramm">Threads</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
